@@ -1,6 +1,4 @@
 package amal;
-//this is a test
-
 import java.util.List;
 
 public class AnagramSolver {
@@ -29,6 +27,11 @@ public class AnagramSolver {
 	 * 		Will throw IllegalArgumentException if max is less than 0.
 	 */
 	public void print(String s, int max) {
+		if (max < 0) {
+			throw new IllegalArgumentException();
+		}
+		
+		
 		
 	}
 }
