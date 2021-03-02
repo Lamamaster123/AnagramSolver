@@ -1,4 +1,5 @@
-package com.amal;
+package amal;
+//this is a test
 
 import java.util.List;
 

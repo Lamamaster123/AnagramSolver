@@ -1,4 +1,4 @@
-package com.amal;
+package amal;
 
 
 import java.io.*;

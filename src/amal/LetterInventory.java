@@ -1,4 +1,4 @@
-package com.amal;
+package amal;
 
 // The LetterInventory class keeps track of 26 counts for the 26 letters of the
 // alphabet.  It can be constructed from a string or as the result of adding or
