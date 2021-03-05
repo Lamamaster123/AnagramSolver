@@ -1,7 +1,10 @@
 package amal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AnagramSolver {
+	HashMap<String, LetterInventory> map;
 
 	/**
 	 * Constructs and AnagramSolver object which will
@@ -11,8 +14,13 @@ public class AnagramSolver {
 	 * @param list The dictionary of valid words.
 	 */
 	public AnagramSolver(List<String> list) {
-		LetterInventory n = new LetterInventory("abc");
+		//initialize map object
+		map = new HashMap<String, LetterInventory>();
 		
+		//store all in dictionary into map with their associated letter inventory (easy access)
+		for (int i = 0; i < list.size(); i++) {
+			map.put(list.get(i), new LetterInventory(list.get(i)));
+		}		
 	}
 	
 	/**
@@ -27,10 +35,14 @@ public class AnagramSolver {
 	 * 		Will throw IllegalArgumentException if max is less than 0.
 	 */
 	public void print(String s, int max) {
+		//max cannot be less than 0
 		if (max < 0) {
 			throw new IllegalArgumentException();
+		//if max is 0, user chose infinite max value
+		} else if (max == 0) {
+			max = Integer.MAX_VALUE;
 		}
-		
+
 		
 		
 	}
