@@ -1,5 +1,6 @@
 package amal;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -42,8 +43,31 @@ public class AnagramSolver {
 		} else if (max == 0) {
 			max = Integer.MAX_VALUE;
 		}
+		
+		//makes letter inventory for string to be analyzed
+		LetterInventory stringLetters = new LetterInventory(s);
+		
+		String matchingWords[] = new String[max];
+		//recursive helper method
+		printHelper(stringLetters, max, matchingWords);
 
 		
+		
+	}
+	
+	public void printHelper(LetterInventory stringLetters, int max, String matchingWords[]) {
+		
+		for (Map.Entry<String, LetterInventory> entry : map.entrySet()) {
+			if (max <= 0 || entry.getValue().subtract(stringLetters) == null) {
+				//do nothing, this value does not apply
+			} else if (entry.getValue().subtract(stringLetters).size() == 0) {
+				//we are successful, print this list of matching words yay
+				System.out.print(matchingWords);
+			} else {
+				//repeat our iteration
+			}
+		    //System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+		}
 		
 	}
 }
