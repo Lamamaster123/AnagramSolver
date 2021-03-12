@@ -58,12 +58,15 @@ public class AnagramSolver {
 	public void printHelper(LetterInventory stringLetters, int max, String matchingWords[]) {
 		
 		for (Map.Entry<String, LetterInventory> entry : map.entrySet()) {
-			if (max <= 0 || entry.getValue().subtract(stringLetters) == null) {
-				//do nothing, this value does not apply
-			} else if (entry.getValue().subtract(stringLetters).size() == 0) {
+			System.out.print(entry.getValue());
+			if (max <= 0 || stringLetters.subtract(entry.getValue()) == null) {
+				//do nothing, this word does not apply		
+				break;
+			} else if (stringLetters.subtract(entry.getValue()).size() == 0) {
 				//we are successful, print this list of matching words yay
 				System.out.print(matchingWords);
 			} else {
+				printHelper(stringLetters.subtract(entry.getValue()), max - 1, matchingWords);
 				//repeat our iteration
 			}
 		    //System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
