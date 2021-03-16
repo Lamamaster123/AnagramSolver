@@ -1,11 +1,13 @@
 package amal;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 public class AnagramSolver {
-	HashMap<String, LetterInventory> map;
+	HashMap<String, LetterInventory> dictionary;
 
 	/**
 	 * Constructs and AnagramSolver object which will
@@ -16,11 +18,11 @@ public class AnagramSolver {
 	 */
 	public AnagramSolver(List<String> list) {
 		//initialize map object
-		map = new HashMap<String, LetterInventory>();
+		dictionary = new HashMap<String, LetterInventory>();
 		
 		//store all in dictionary into map with their associated letter inventory (easy access)
 		for (int i = 0; i < list.size(); i++) {
-			map.put(list.get(i), new LetterInventory(list.get(i)));
+			dictionary.put(list.get(i), new LetterInventory(list.get(i)));
 		}		
 	}
 	
@@ -47,7 +49,8 @@ public class AnagramSolver {
 		//makes letter inventory for string to be analyzed
 		LetterInventory stringLetters = new LetterInventory(s);
 		
-		String matchingWords[] = new String[max];
+		ArrayList<String> matchingWords = new ArrayList<String>();
+		
 		//recursive helper method
 		printHelper(stringLetters, max, matchingWords);
 
@@ -55,18 +58,17 @@ public class AnagramSolver {
 		
 	}
 	
-	public void printHelper(LetterInventory stringLetters, int max, String matchingWords[]) {
-		
-		for (Map.Entry<String, LetterInventory> entry : map.entrySet()) {
-			System.out.print(entry.getValue());
-			if (max <= 0 || stringLetters.subtract(entry.getValue()) == null) {
-				//do nothing, this word does not apply		
-				break;
-			} else if (stringLetters.subtract(entry.getValue()).size() == 0) {
-				//we are successful, print this list of matching words yay
-				System.out.print(matchingWords);
-			} else {
+	public void printHelper(LetterInventory stringLetters, int max, ArrayList<String> matchingWords) {
+		if (stringLetters.size() == 0) {
+			System.out.print(matchingWords);
+		} else if (max <= 0) {
+			return;
+		} 
+		for (Map.Entry<String, LetterInventory> entry : dictionary.entrySet()) {
+			if (stringLetters.subtract(entry.getValue()) != null) {
+				matchingWords.add(entry.getKey());
 				printHelper(stringLetters.subtract(entry.getValue()), max - 1, matchingWords);
+				matchingWords.remove(entry.getKey());
 				//repeat our iteration
 			}
 		    //System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
