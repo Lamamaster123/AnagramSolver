@@ -42,6 +42,8 @@ public class AnagramSolver {
 	 * 		Will throw IllegalArgumentException if max is less than 0.
 	 */
 	public void print(String s, int max) {
+		long startTime = System.nanoTime();
+		
 		//max cannot be less than 0
 		if (max < 0) {
 			throw new IllegalArgumentException();
@@ -64,6 +66,11 @@ public class AnagramSolver {
 
 		//resets the dictionary
 		dictionary = (HashMap<String, LetterInventory>) backupDictionary.clone();
+		
+		long endTime = System.nanoTime();
+		
+		System.out.println();
+		System.out.print("Time: " + (endTime - startTime));
 		
 	}
 	
@@ -119,3 +126,51 @@ public class AnagramSolver {
 		
 	}
 }
+
+/**
+ * Word: brabgobebebsu
+ * 
+ * REGULAR
+ * 13543950
+ * 6189218
+ * 7229977
+ * 7185807
+ * 5407958
+ * 4466234
+ * 5332438
+ * 2981504
+ * 3260037
+ * 2266691
+ * 
+ * OPTIMIZATION (not repeatable)
+ * 8847987
+ * 6276269
+ * 5815084
+ * 2903966
+ * 2713176
+ * 2603476
+ * 2236397
+ * 2050365
+ * 1358154
+ * 1738218
+ * 
+ * OPTIMIZATION (repeatable)
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
+
+
+
+
+
